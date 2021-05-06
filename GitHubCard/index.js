@@ -27,8 +27,7 @@ axios
 
 .then((res) => {
   const userD = res.data;
-  const card = cardMaker(userD);
-  followersArray.forEach(userD); 
+  const card = cardMaker(userD); 
   cards.appendChild(card); 
     return userD;
 })
@@ -36,7 +35,6 @@ axios
   console.log(error);
 })
 
-  
 /*
   STEP 5: Now that you have your own card getting added to the DOM, either
     follow this link in your browser https://api.github.com/users/<Your github name>/followers,
@@ -50,6 +48,13 @@ axios
 
 const followersArray = ['tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
 
+followersArray.forEach((data) => {
+  axios.get(`https://api.github.com/users/${data}`)
+  .then((res) => {
+    cards.appendChild(cardMaker(res.data))
+  })
+  
+})
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
     Using DOM methods and properties, create and return the following markup:
